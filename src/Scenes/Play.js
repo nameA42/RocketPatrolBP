@@ -1,9 +1,9 @@
-class Menu extends Phaser.Scene {
+class Play extends Phaser.Scene {
     constructor(){
-        super("menuScene");
+        super("playScene");
     }
 
     create() {
-        this.add.text(20, 20, "Rocket Patrol Menu");
+        this.add.text(20, 20, "Rocket Patrol Play");
     }
 }
