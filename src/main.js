@@ -1,6 +1,6 @@
  let config = {
     type: Phaser.AUTO,
-    width: 640,
+    width: 1280,
     height: 480,
     physics: 
     {
@@ -16,9 +16,9 @@ let game = new Phaser.Game(config);
 
 let borderUISize = game.config.height / 15;
 let borderPadding = borderUISize / 3;
-var greentop, ships, cam;
+var greentop, ships;
 let borderOver = 500;
 
 // reserve keyboard vars
-let keyF, keyR, keyLEFT, keyRIGHT;
+let keyUP, keyR, keyLEFT, keyRIGHT, keyA, keyS, keyD;
 

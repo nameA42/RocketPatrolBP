@@ -17,6 +17,7 @@ class Spaceship extends Phaser.Physics.Arcade.Sprite {
     }
 
     reset() {
-        this.x = game.config.width;
+        this.x = game.config.width/2;
+        this.y = 3*borderUISize + borderPadding+this.height + Math.random()*game.config.height/2;
     }
 }
