@@ -13,11 +13,15 @@ class Play extends Phaser.Scene {
 
 
     create() {
+        cam = this.cameras.main;
+
         // define keys
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+
+        this.physics.world.setBounds(borderUISize, 0, game.config.width-2*borderUISize, game.config.height-borderUISize);
 
         this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
         
@@ -43,10 +47,10 @@ class Play extends Phaser.Scene {
         greentop.body.setImmovable(true);
 
         // white borders
-        this.add.rectangle(0, 0, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0, 0);
-        this.add.rectangle(0, game.config.height - borderUISize, game.config.width, borderUISize, 0xFFFFFF).setOrigin(0, 0);
-        this.add.rectangle(0, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0, 0);
-        this.add.rectangle(game.config.width - borderUISize, 0, borderUISize, game.config.height, 0xFFFFFF).setOrigin(0, 0);
+        this.add.rectangle(-borderOver, -borderOver, game.config.width+2*borderOver, borderUISize+borderOver, 0xFFFFFF).setOrigin(0, 0);
+        this.add.rectangle(-borderOver, game.config.height - borderUISize, game.config.width+2*borderOver, borderUISize+borderOver, 0xFFFFFF).setOrigin(0, 0);
+        this.add.rectangle(-borderOver, -borderOver, borderUISize+borderOver, game.config.height+2*borderOver, 0xFFFFFF).setOrigin(0, 0);
+        this.add.rectangle(game.config.width - borderUISize, -borderOver, borderUISize+borderOver, game.config.height+2*borderOver, 0xFFFFFF).setOrigin(0, 0);
         
         this.p1Score = 0;
         let scoreConfig = {

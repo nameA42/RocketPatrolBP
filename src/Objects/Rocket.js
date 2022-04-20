@@ -26,7 +26,9 @@ class Rocket extends Phaser.Physics.Arcade.Sprite {
             this.sfxRocket.play();  // play sfx
         }
         if(this.isfiring){
-            this.setVelocityY(-100*this.flyspeed);
+            this.setVelocityY(-50*this.flyspeed);
+            cam.setZoom(Math.min(cam.zoom*1.01, 2));
+            cam.centerOn(this.x, this.y);
         }
     }
     
@@ -34,5 +36,8 @@ class Rocket extends Phaser.Physics.Arcade.Sprite {
         this.isfiring = false;
         this.setVelocity(0,0);
         this.y = game.config.height - borderUISize - borderPadding - this.height;
+        cam.centerOn(game.config.width/2, game.config.height/2);
+        cam.zoom = 1;
+        cam.flash();
     }
 }
