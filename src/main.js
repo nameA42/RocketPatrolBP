@@ -6,7 +6,7 @@
     {
         default: 'arcade',
         arcade: {
-            debug: true   
+            debug: false   
         }
     },
     scene: [ Menu, Play ]

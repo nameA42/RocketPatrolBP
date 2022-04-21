@@ -30,7 +30,7 @@ class Menu extends Phaser.Scene {
         }
 
         this.add.text(game.config.width/4, game.config.height/2 - 2*borderUISize - 2*borderPadding, 'Player 1', menuConfig).setOrigin(0.5);
-        this.add.text(game.config.width/4, game.config.height/2 - borderUISize - borderPadding, 'ROCKET PATROL', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/4, game.config.height/2 - borderUISize - borderPadding, 'GHOST PATROL', menuConfig).setOrigin(0.5);
         this.add.text(game.config.width/4, game.config.height/2, 'use <-> arrows to move & ^ arrow to fire', menuConfig).setOrigin(0.5);
         menuConfig.backgroundColor = '#FF0000';
         menuConfig.color = '#000';
@@ -39,7 +39,7 @@ class Menu extends Phaser.Scene {
         menuConfig.backgroundColor = '#F3B141';
         menuConfig.color = '#843605';
         this.add.text(game.config.width*3/4, game.config.height/2 - 2*borderUISize - 2*borderPadding, 'Player 2', menuConfig).setOrigin(0.5);
-        this.add.text(game.config.width*3/4, game.config.height/2 - borderUISize - borderPadding, 'ROCKET PATROL', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width*3/4, game.config.height/2 - borderUISize - borderPadding, 'GHOST PATROL', menuConfig).setOrigin(0.5);
         this.add.text(game.config.width*3/4, game.config.height/2, 'use (A) (S) keys to move & (D) to fire', menuConfig).setOrigin(0.5);
         menuConfig.backgroundColor = '#00FF00';
         menuConfig.color = '#000';

@@ -31,16 +31,16 @@ class Play extends Phaser.Scene {
         this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
         
         //rockets
-        this.p1Rocket = new Rocket(this, game.config.width/4, game.config.height - borderUISize - borderPadding, 'rocket', null, keyLEFT, keyRIGHT, keyUP, camp1).setOrigin(0.5, 0.5).setScale(3,3).refreshBody();
-        this.p2Rocket = new Rocket(this, game.config.width/4, game.config.height - borderUISize - borderPadding, 'rocket', null, keyA, keyS, keyD, camp2).setOrigin(0.5, 0.5).setScale(3,3).refreshBody();
+        this.p1Rocket = new Rocket(this, game.config.width/4-100, game.config.height - borderUISize - borderPadding, 'rocket', null, keyLEFT, keyRIGHT, keyUP, camp1).setOrigin(0.5, 0.5).setScale(3,3).refreshBody();
+        this.p2Rocket = new Rocket(this, game.config.width/4+100, game.config.height - borderUISize - borderPadding, 'rocket', null, keyA, keyS, keyD, camp2).setOrigin(0.5, 0.5).setScale(3,3).refreshBody();
         this.p1Rocket.setTint(0xff0000);
         this.p2Rocket.setTint(0x00ff00);
         
         //ships
         ships = this.physics.add.group({ allowGravity: false , runChildUpdate: true});
-        ships.add(new Spaceship(this, game.config.width/2 + borderUISize*6, borderUISize*4, 'spaceship', 0, 30).setOrigin(0, 0));
-        ships.add(new Spaceship(this, game.config.width/2 + borderUISize*3, borderUISize*5 + borderPadding*2, 'spaceship', 0, 20).setOrigin(0,0));
-        ships.add(new Spaceship(this, game.config.width/2, borderUISize*6 + borderPadding*4, 'spaceship', 0, 10).setOrigin(0,0));
+        ships.add(new Spaceship(this, game.config.width/2 + borderUISize*6, borderUISize*4, 'spaceship', 0, 30).setOrigin(0, 0).setTint(0x562B00));
+        ships.add(new Spaceship(this, game.config.width/2 + borderUISize*3, borderUISize*5 + borderPadding*2, 'spaceship', 0, 20).setOrigin(0,0).setTint(0x360025));
+        ships.add(new Spaceship(this, game.config.width/2, borderUISize*6 + borderPadding*4, 'spaceship', 0, 10).setOrigin(0,0).setTint(0x005635));
         
         this.anims.create({
             key: 'explode',
@@ -49,7 +49,7 @@ class Play extends Phaser.Scene {
         });
         
         // green UI background
-        greentop = this.add.rectangle(0, borderUISize + borderPadding, game.config.width/2, borderUISize * 2, 0x00FFFF).setOrigin(0, 0);
+        greentop = this.add.rectangle(0, borderUISize, game.config.width/2, borderUISize * 3, 0x006666).setOrigin(0, 0);
         this.physics.add.existing(greentop);
         greentop.body.setImmovable(true);
 
@@ -103,6 +103,7 @@ class Play extends Phaser.Scene {
         this.physics.add.overlap(this.p1Rocket, ships, this.shipExplode, null, this);
         this.physics.add.collider(this.p2Rocket, greentop, this.resetRocket, null, this.p2Rocket);
         this.physics.add.overlap(this.p2Rocket, ships, this.shipExplode, null, this);
+        this.physics.add.collider(this.p1Rocket, this.p2Rocket);
     }
 
     update() {
@@ -114,7 +115,7 @@ class Play extends Phaser.Scene {
         if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
             this.scene.restart();
         }
-        this.timtext.text = Math.max(0, 60 - Math.floor(this.time.now/1000));
+        this.timtext.text = Math.max(0, 60 - Math.floor(this.clock.elapsed/1000));
     }
 
     resetRocket(rockt)
